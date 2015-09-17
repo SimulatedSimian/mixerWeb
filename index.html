@@ -1,0 +1,21 @@
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>jQuery.post demo</title>
+		<script src="./jquery-2.1.4.min.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function postData(path, params) {
+				$.post("/" + path,
+					{ params },
+					function(data) {
+						alert("Response: " + data);
+					}
+				);
+			}
+		</script>
+		Test submit data <input id="clickMe" type="button" value="clickme" onclick="postData('test', 'lots of data');" />
+	</body>
+</html>
