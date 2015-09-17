@@ -3,8 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<title>jQuery.post demo</title>
-		<script src="./jquery-2.1.4.min.js"></script>
-	</head>
+		 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  		<script src="./jquery-2.1.4.min.js"></script>
+		<script src="./jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="/resources/demos/style.css">
+  	</head>
 	<body>
 		<script type="text/javascript">
 			function postData(path, params) {
@@ -15,7 +18,26 @@
 					}
 				);
 			}
+			$(function() {
+			    $( "#slider-vertical" ).slider({
+			      orientation: "vertical",
+			      range: "min",
+			      min: 0,
+			      max: 100,
+			      value: 60,
+			      slide: function( event, ui ) {
+			        $( "#amount" ).val( ui.value );
+			      }
+			    });
+			    $( "#amount" ).val( $( "#slider-vertical" ).slider( "value" ) );
+			  });
 		</script>
 		Test submit data <input id="clickMe" type="button" value="clickme" onclick="postData('test', 'lots of data');" />
+		<p>
+  <label for="amount">Volume:</label>
+  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+ 
+<div id="slider-vertical" style="height:200px;"></div>
 	</body>
 </html>
