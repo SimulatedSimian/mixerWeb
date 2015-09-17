@@ -17,7 +17,7 @@ func test(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	mux := http.NewServeMux()
-	mux.Handle("/", http.FileServer(http.Dir(".")))
+	mux.Handle("/", http.FileServer(http.Dir("www")))
 	mux.HandleFunc("/test", test)
 	http.ListenAndServe(":8000", mux)
 }
