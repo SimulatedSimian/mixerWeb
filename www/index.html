@@ -12,8 +12,8 @@
 			function postData(path, params) {
 				$.post("/" + path, params);
 			}
-			$(function() {
-			    $( "#slider-vertical" ).slider({
+			function initSlider(selector) {
+			    $( selector ).slider({
 			    	orientation: "vertical",
 			    	range: "min",
 			    	min: 0,
@@ -21,9 +21,17 @@
 			    	value: 60,
 			    	slide: function( event, ui ) {
 			    		$( "#amount" ).val( ui.value );
+						postData('test', $( "#amount" ).val());
 			    	}
 			    });
-			    $( "#amount" ).val( $( "#slider-vertical" ).slider( "value" ) );
+			}
+
+			$(function() {
+				initSlider("#slider-vertical1")
+				initSlider("#slider-vertical2")
+				initSlider("#slider-vertical3")
+				initSlider("#slider-vertical4")
+			    $( "#amount" ).val( $( "#slider-vertical1" ).slider( "value" ) );
 			});
 			$(document).ready(function() {
 				$('#clickMe').click(function() {
@@ -37,6 +45,9 @@
 		</p>
 		Test submit data <input id="clickMe" type="button" value="clickme" />
 			 
-		<div id="slider-vertical" style="height:200px;"></div>
+		<div id="slider-vertical1" style="height:200px;display:table-cell;margin:10px;"></div>
+		<div id="slider-vertical2" style="height:200px;display:table-cell;margin:10px;"></div>
+		<div id="slider-vertical3" style="height:200px;display:table-cell;margin:10px;"></div>
+		<div id="slider-vertical4" style="height:200px;display:table-cell;margin:10px;"></div>
 	</body>
 </html>
