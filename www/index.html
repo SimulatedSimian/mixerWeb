@@ -12,31 +12,89 @@
 			function postData(path, params) {
 				$.post("/" + path, params);
 			}
-			$(function() {
-			    $( "#slider-vertical" ).slider({
+			function initSlider(selector, value) {
+			    $( selector ).slider({
 			    	orientation: "vertical",
 			    	range: "min",
 			    	min: 0,
 			    	max: 100,
 			    	value: 60,
 			    	slide: function( event, ui ) {
-			    		$( "#amount" ).val( ui.value );
+			    		$( value ).val( ui.value );
 			    	}
 			    });
-			    $( "#amount" ).val( $( "#slider-vertical" ).slider( "value" ) );
-			});
+			    $( value ).val( $( selector ).slider( "value" ) );
+			};
+			
+			$(function() {
+				initSlider("#slider-vertical1", "#amount1");
+				initSlider("#slider-vertical2", "#amount2");
+				initSlider("#slider-vertical3", "#amount3");
+				initSlider("#slider-vertical4", "#amount4");
+				initSlider("#slider-vertical5", "#amount5");
+				initSlider("#slider-vertical6", "#amount6");
+ 			});
 			$(document).ready(function() {
 				$('#clickMe').click(function() {
-					postData('test', $('#amount').val());
+					var sliderData = $( "#amount1" ).val()+","+
+										$( "#amount2" ).val()+","+
+										$( "#amount3" ).val()+","+
+										$( "#amount4" ).val()+","+
+										$( "#amount5" ).val()+","+
+										$( "#amount6" ).val();
+					postData('test', sliderData);
 				});
 			});
 		</script>
-		<p>
-			<label for="amount">Volume:</label>
-			<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-		</p>
+		<table style="width:100%">
+			<tr>
+				<td>
+					<label for="amount1">Volume 1:</label>
+					<input type="text" id="amount1" readonly style="border:0; color:#f6931f; font-weight:bold;"/>
+				</td>
+				<td>
+					<label for="amount2">Volume 2:</label>
+					<input type="text" id="amount2" readonly style="border:0; color:#f6931f; font-weight:bold;"/>
+				</td>
+				<td>
+					<label for="amount3">Volume 3:</label>
+					<input type="text" id="amount3" readonly style="border:0; color:#f6931f; font-weight:bold;"/>
+				</td>
+				<td>
+					<label for="amount4">Volume 4:</label>
+					<input type="text" id="amount4" readonly style="border:0; color:#f6931f; font-weight:bold;"/>
+				</td>
+				<td>
+					<label for="amount5">Volume 5:</label>
+					<input type="text" id="amount5" readonly style="border:0; color:#f6931f; font-weight:bold;"/>
+				</td>
+				<td>
+					<label for="amount6">Volume 6:</label>
+					<input type="text" id="amount6" readonly style="border:0; color:#f6931f; font-weight:bold;"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="slider-vertical1" style="height:200px;"></div>
+				</td>
+				<td>
+					<div id="slider-vertical2" style="height:200px;"></div>
+				</td>
+				<td>
+					<div id="slider-vertical3" style="height:200px;"></div>
+				</td>
+				<td>
+					<div id="slider-vertical4" style="height:200px;"></div>
+				</td>
+				<td>
+					<div id="slider-vertical5" style="height:200px;"></div>
+				</td>
+				<td>
+					<div id="slider-vertical6" style="height:200px;"></div>
+				</td>
+			</tr>
+		</table>
+		
 		Test submit data <input id="clickMe" type="button" value="clickme" />
-			 
-		<div id="slider-vertical" style="height:200px;"></div>
 	</body>
 </html>
